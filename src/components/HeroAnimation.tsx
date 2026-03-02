@@ -37,7 +37,7 @@ function extractText(children: React.ReactNode): string {
       text += child;
     } else if (typeof child === "number") {
       text += String(child);
-    } else if (React.isValidElement(child) && child.props.children) {
+    } else if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.props.children) {
       text += extractText(child.props.children);
     }
   });
@@ -64,7 +64,7 @@ function sliceChildren(
       const slice = str.slice(0, remaining);
       nodes.push(slice);
       remaining -= slice.length;
-    } else if (React.isValidElement(child) && child.props.children != null) {
+    } else if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.props.children != null) {
       const result = sliceChildren(child.props.children, remaining);
       if (result.nodes.length > 0) {
         nodes.push(React.cloneElement(child, { key: child.key }, ...result.nodes));
