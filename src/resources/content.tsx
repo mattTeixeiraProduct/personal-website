@@ -1,15 +1,14 @@
 import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
-import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
+  firstName: "Teixeira",
+  lastName: "Matt",
+  name: `Matt Teixeira`,
   role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  avatar: "/images/avatar.jpeg",
+  email: "matt.teixeira@mattteixeira.com",
+  location: "Australia/Melbourne",
+  languages: ["English", "Portuguese", "Spanish"],
 };
 
 const newsletter: Newsletter = {
@@ -19,37 +18,22 @@ const newsletter: Newsletter = {
 };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
-  // Set essentials: true for links you want to show on the about page
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/mattTeixeiraProduct",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/matt-teixeira/",
     essential: true,
   },
   {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
-    essential: true,
-  },
-  {
-    name: "Email",
-    icon: "email",
-    link: `mailto:${person.email}`,
+    name: "X",
+    icon: "twitter",
+    link: `https://x.com/matt_teeixeira`,
     essential: true,
   },
 ];
@@ -60,24 +44,22 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Designer by day, entrepreneur at all other times</>,
   featured: {
     display: true,
     title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
+      <span className="inline-flex items-center gap-3 text-sm">
+        <span className="text-font-secondary">Introducing</span>
+        <span className="h-5 w-px bg-muted-foreground" />
+        <strong className="">Deck</strong>
+      </span>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/capitalclimb",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <strong>Senior Product Designer at pay.com.au</strong> and as the <strong>founder at Deck</strong>.
+    </>
   ),
 };
 
@@ -94,7 +76,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -102,52 +84,109 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I love technology. More so, I love to enable humans to have amazing interactions with it. I express that through designing and building experiences that feel custom-made for the user at hand. 
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Deck",
+        timeframe: "Aug 2025 - Present",
+        role: "Founder",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Deck helps product teams to synthesize and organize their user feedback, ultimately enabling automatic, always-on insights management and a clear, user-centric product roadmap.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "pay.com.au",
+        timeframe: "Oct 2024 - Present",
+        role: "Senior Product Designer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Senior Product Designer in the Rewards and US Streams.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "CapitalClimb",
+        timeframe: "Nov 2023 - Jun 2025",
+        role: "Founder",
+        achievements: [
+          <>
+            Built a fintech SaaS for value investors to analyze companies and make investment decisions.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "News Corp Australia",
+        timeframe: "Aug 2023 - Oct 2024",
+        role: "Product Designer",
+        achievements: [
+          <>
+            Part of the data visualisation committee: a committee with stakeholders from several groups whose goal is to improve how people interact with data within the Company.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Researched, designed and implemented optimal comments solution that was adopted by a native app design system with 20+ brands, where average weekly comments increased by 7%.
+          </>,
+          <>
+            Increased 13% average user page views at The Australian native app through designing a feature that leveraged a third-party's algorithm to personalise content recommendation to the user.
+          </>,
+          <>
+            Led the conduction of various research methods (user interviews, usability tests, surveys, etc) to gather insights, refine design solutions, and achieve KPIs.
+          </>,
+          <>
+            Co-led initiatives from research to deployment, collaborating closely with product, engineering, marketing, and editorial teams to ensure buy-in and user-centricity in solutions.
+          </>,
+          <>
+            Conducted feedback and mentoring sessions with younger designers, providing guidance on product and design ideas, communication, stakeholder management, and effective engineering collaboration.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Safewill",
+        timeframe: "Jun 2022 - Aug 2023",
+        role: "Product Designer",
+        achievements: [
+          <>
+            Championed and led the design of a feature promoting organic acquisition, coordinating with cross-functional teams for successful launch and generating 9% of sign ups within the first month of release.
+          </>,
+          <>
+            Designed and implemented a partnerships dashboard: collaborated with internal product teams and business stakeholders to deliver a data visualisation product that increased B2B business acquisition by 12%.
+          </>,
+          <>
+            Collaborated with cross-functional stakeholders to release the MVP of the Digital Vault, which exceeded 200% of its user acquisition OKR and demonstrated outstanding early engagement metrics.
+          </>,
+          <>
+            Led the ideation, conceptualisation, and prototyping phases of product development, employing a user-centred design approach and incorporating customer feedback to drive continuous improvement.
+          </>,
+          <>
+            Managed the company's design system by taking into consideration brand identity, visual language, and behavioural science to implement user-friendly components.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Ambient Food Group",
+        timeframe: "May 2021 - Jun 2022",
+        role: "UX/UI Designer",
+        achievements: [
+          <>
+            Led the design of a responsive web-based corporate catering eCommerce platform, taking into consideration business goals and user problems through data analysis.
+          </>,
+          <>
+            Conducted extensive user research and gathered feedback from corporate clients to gain insights into their pain points, needs, and preferences, ensuring a customer-centric approach.
+          </>,
+          <>
+            Translated complex business requirements into intuitive user interfaces, employing a user-centred design approach, wireframing, prototyping, and conducting usability testing to validate designs.
           </>,
         ],
         images: [],
@@ -155,21 +194,21 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "King's Own Institute",
+        description: <>Bachelor of Business (Finance & Management Major)</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "PUCRS (Brazil)",
+        description: <>Bachelor of Civil Engineering. Deferred after 4 semesters</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false,
     title: "Technical skills",
     skills: [
       {
@@ -183,7 +222,6 @@ const about: About = {
             icon: "figma",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
         images: [
           {
             src: "/images/projects/project-01/cover-02.jpg",
@@ -218,7 +256,6 @@ const about: About = {
             icon: "supabase",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
         images: [
           {
             src: "/images/projects/project-01/cover-04.jpg",
@@ -233,21 +270,17 @@ const about: About = {
 };
 
 const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
+  path: "/writing",
+  label: "Writing",
+  title: "Writing about design, tech and AI",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work: Work = {
   path: "/work",
   label: "Work",
-  title: `Projects – ${person.name}`,
+  title: "Showcased Work",
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
 };
 
 const gallery: Gallery = {
@@ -255,49 +288,15 @@ const gallery: Gallery = {
   label: "Gallery",
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
   images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
+    { src: "/images/gallery/horizontal-1.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/vertical-4.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/horizontal-3.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/vertical-1.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/vertical-2.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/horizontal-2.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/horizontal-4.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/vertical-3.jpg", alt: "image", orientation: "vertical" },
   ],
 };
 

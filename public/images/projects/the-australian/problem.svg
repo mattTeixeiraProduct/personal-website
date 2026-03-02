@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 10378 4539" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(5.55556,0,0,5.55556,0,0)">
+        <g id="Artboard1" transform="matrix(1,0,0,1,-52,-1349)">
+            <path d="M1920,1389.85L1920,2125.15C1920,2147.7 1901.7,2166 1879.15,2166L92.85,2166C70.304,2166 52,2147.7 52,2125.15L52,1389.85C52,1367.3 70.304,1349 92.85,1349L1879.15,1349C1901.7,1349 1920,1367.3 1920,1389.85Z" style="fill:white;"/>
+            <clipPath id="_clip1">
+                <path d="M1920,1389.85L1920,2125.15C1920,2147.7 1901.7,2166 1879.15,2166L92.85,2166C70.304,2166 52,2147.7 52,2125.15L52,1389.85C52,1367.3 70.304,1349 92.85,1349L1879.15,1349C1901.7,1349 1920,1367.3 1920,1389.85Z"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1,0,0,1.02326,52,1341.09)">
+                    <rect x="396" y="340.002" width="1319.36" height="300.998" style="fill:rgb(255,200,200);"/>
+                </g>
+                <g transform="matrix(1.48841,0,0,1,69.0847,1669)">
+                    <path d="M223,329.75L223,326.25L1136.3,326.25L1136.3,321L1141,328L1136.3,335L1136.3,329.75L223,329.75Z" style="fill:rgb(61,61,61);"/>
+                </g>
+                <g transform="matrix(1,0,0,1,113,1351.72)">
+                    <text x="106.752px" y="60.497px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:24.053px;fill:rgb(61,61,61);">Engagement</text>
+                    <g transform="matrix(24.053,0,0,24.053,320.633,85.3372)">
+                    </g>
+                    <text x="106.752px" y="85.337px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:24.053px;fill:rgb(61,61,61);">(sessions per week)</text>
+                </g>
+                <g transform="matrix(1,0,0,1,1507.34,1993.89)">
+                    <g transform="matrix(24.053,0,0,24.053,260.888,60.4974)">
+                    </g>
+                    <text x="106.752px" y="60.497px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:24.053px;fill:rgb(61,61,61);">T<tspan x="120.551px 125.895px " y="60.497px 60.497px ">im</tspan>e (months)</text>
+                </g>
+                <g transform="matrix(2.18362e-17,0.356612,-3.60709,2.2087e-16,2469.28,1318.78)">
+                    <clipPath id="_clip2">
+                        <rect x="396" y="194.594" width="1074" height="365.406"/>
+                    </clipPath>
+                    <g clip-path="url(#_clip2)">
+                        <path d="M933,108.616L1470,560L396,560L933,108.616Z" style="fill:rgb(255,200,200);"/>
+                    </g>
+                </g>
+                <g transform="matrix(1.09627,0.133461,-0.120849,0.992671,28.1297,1215.1)">
+                    <rect x="403" y="186.9" width="1205" height="4.2" style="fill:rgb(184,0,0);"/>
+                </g>
+                <g transform="matrix(4.46236e-17,-0.728758,1,6.12323e-17,120,2226.51)">
+                    <path d="M223,329.75L223,326.25L1131.39,326.25L1131.39,321L1141,328L1131.39,335L1131.39,329.75L223,329.75Z" style="fill:rgb(61,61,61);"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

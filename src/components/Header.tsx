@@ -2,19 +2,21 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
-
-import { routes, display, person, about, blog, work, gallery } from "@/resources";
+import { cn } from "@/lib/utils";
+import { routes, display, person, about, blog, work } from "@/resources";
 import { ThemeToggle } from "./ThemeToggle";
-import styles from "./Header.module.scss";
+import { TransitionLink } from "./TransitionLink";
+import { AnimatePresence, motion } from "motion/react";
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
+const TimeDisplay: React.FC<TimeDisplayProps> = ({
+  timeZone,
+  locale = "en-GB",
+}) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -33,7 +35,6 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
 
     updateTime();
     const intervalId = setInterval(updateTime, 1000);
-
     return () => clearInterval(intervalId);
   }, [timeZone, locale]);
 
@@ -42,153 +43,118 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
 
 export default TimeDisplay;
 
+interface NavItemProps {
+  href: string;
+  label?: string;
+  selected: boolean;
+  hovered: boolean;
+  onHover: () => void;
+}
+
+function NavItem({ href, label, selected, hovered, onHover }: NavItemProps) {
+  return (
+    <TransitionLink
+      href={href}
+      className={cn(
+        "relative flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-base transition-colors",
+        selected
+          ? "text-accent-foreground font-bold"
+          : "text-font-secondary hover:text-foreground",
+      )}
+      onMouseEnter={onHover}
+    >
+      <AnimatePresence>
+        {(hovered || selected) && (
+          <motion.div
+            layoutId="nav-hover"
+            className={cn(
+              "absolute inset-0 rounded-md",
+              selected ? "bg-accent/25" : "bg-accent/25",
+            )}
+            transition={{ type: "tween", duration: 0.3, bounce: 0.1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
+        )}
+      </AnimatePresence>
+      {label && <span className="relative z-10 hidden sm:inline">{label}</span>}
+    </TransitionLink>
+  );
+}
+
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
     <>
-      <Fade s={{ hide: true }} fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade
-        hide
-        s={{ hide: false }}
-        fillWidth
-        position="fixed"
-        bottom="0"
-        to="top"
-        height="80"
-        zIndex={9}
-      />
-      <Row
-        fitHeight
-        className={styles.position}
-        position="sticky"
-        as="header"
-        zIndex={9}
-        fillWidth
-        padding="8"
-        horizontal="center"
-        data-border="rounded"
-        s={{
-          position: "fixed",
-        }}
+      <header
+        className={cn(
+          "sticky top-0 sm:sticky sm:top-0 fixed bottom-0 sm:bottom-auto z-[9] flex w-full items-center justify-center p-2 relative",
+        )}
       >
-        <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
-        </Row>
-        <Row fillWidth horizontal="center">
-          <Row
-            background="page"
-            border="neutral-alpha-weak"
-            radius="m-4"
-            shadow="l"
-            padding="4"
-            horizontal="center"
-            zIndex={1}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 backdrop-blur-md bg-background/80"
+          style={{
+            height: "calc(100% + 40px)",
+            maskImage: "linear-gradient(to bottom, black 40%, transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent)",
+          }}
+        />
+        <div className="opacity-0 sm:flex flex-1 items-center pl-3 text-sm">
+          {display.location && <span>{person.location}</span>}
+        </div>
+
+        <div className="flex justify-center">
+          <nav
+            className="flex items-center gap-1"
+            suppressHydrationWarning
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            <Row gap="4" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
-              {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
-              )}
-              <Line background="neutral-alpha-medium" vert maxHeight="24" />
-              {routes["/about"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      label={about.label}
-                      selected={pathname === "/about"}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      selected={pathname === "/about"}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/work"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      label={work.label}
-                      selected={pathname.startsWith("/work")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      selected={pathname.startsWith("/work")}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/blog"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="book"
-                      href="/blog"
-                      label={blog.label}
-                      selected={pathname.startsWith("/blog")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="book"
-                      href="/blog"
-                      selected={pathname.startsWith("/blog")}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/gallery"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      label={gallery.label}
-                      selected={pathname.startsWith("/gallery")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      selected={pathname.startsWith("/gallery")}
-                    />
-                  </Row>
-                </>
-              )}
-              {display.themeSwitcher && (
-                <>
-                  <Line background="neutral-alpha-medium" vert maxHeight="24" />
-                  <ThemeToggle />
-                </>
-              )}
-            </Row>
-          </Row>
-        </Row>
-        <Flex fillWidth horizontal="end" vertical="center">
-          <Flex
-            paddingRight="12"
-            horizontal="end"
-            vertical="center"
-            textVariant="body-default-s"
-            gap="20"
-          >
-            <Flex s={{ hide: true }}>
-              {display.time && <TimeDisplay timeZone={person.location} />}
-            </Flex>
-          </Flex>
-        </Flex>
-      </Row>
+            {routes["/"] && (
+              <NavItem
+                href="/"
+                label="Home"
+                selected={pathname === "/"}
+                hovered={hoveredItem === "/"}
+                onHover={() => setHoveredItem("/")}
+              />
+            )}
+            {routes["/about"] && (
+              <NavItem
+                href="/about"
+                label={about.label}
+                selected={pathname === "/about"}
+                hovered={hoveredItem === "/about"}
+                onHover={() => setHoveredItem("/about")}
+              />
+            )}
+            {routes["/work"] && (
+              <NavItem
+                href="/work"
+                label={work.label}
+                selected={pathname.startsWith("/work")}
+                hovered={hoveredItem === "/work"}
+                onHover={() => setHoveredItem("/work")}
+              />
+            )}
+            {routes["/writing"] && (
+              <NavItem
+                href="/writing"
+                label={blog.label}
+                selected={pathname.startsWith("/writing")}
+                hovered={hoveredItem === "/writing"}
+                onHover={() => setHoveredItem("/writing")}
+              />
+            )}
+          </nav>
+        </div>
+
+        <div className="hidden sm:flex flex-1 items-center justify-end pr-3 text-sm">
+          {display.themeSwitcher && <ThemeToggle />}
+        </div>
+      </header>
     </>
   );
 };

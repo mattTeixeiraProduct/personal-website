@@ -1,9 +1,11 @@
-import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
+import { generateMetadata as genMeta } from "@/lib/metadata";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
+import { AnimatedSection } from "@/components/about/AnimatedSection";
 import { Projects } from "@/components/work/Projects";
 
 export async function generateMetadata() {
-  return Meta.generate({
+  return genMeta({
     title: work.title,
     description: work.description,
     baseURL: baseURL,
@@ -14,8 +16,8 @@ export async function generateMetadata() {
 
 export default function Work() {
   return (
-    <Column maxWidth="m" paddingTop="24">
-      <Schema
+    <div className="w-full pt-6">
+      <SchemaMarkup
         as="webPage"
         baseURL={baseURL}
         path={work.path}
@@ -28,10 +30,15 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {work.title}
-      </Heading>
+      <AnimatedSection className="text-center pt-2 pb-6">
+        <h1 className="text-3xl font-bold tracking-tight font-[family-name:var(--font-heading)]">
+          {work.title}
+        </h1>
+      </AnimatedSection>
+
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
+
       <Projects />
-    </Column>
+    </div>
   );
 }

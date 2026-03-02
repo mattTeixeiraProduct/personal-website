@@ -1,52 +1,67 @@
-import { Row, IconButton, SmartLink, Text } from "@once-ui-system/core";
+"use client";
+
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { person, social } from "@/resources";
-import styles from "./Footer.module.scss";
+import { Icon } from "@/components/Icon";
+import { AnimatePresence, motion } from "motion/react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Show footer only on top-level pages (/, /about, /work, /writing)
+  const segments = pathname.split("/").filter(Boolean);
+  const showFooter = segments.length <= 1;
 
   return (
-    <Row as="footer" fillWidth padding="8" horizontal="center" s={{ direction: "column" }}>
-      <Row
-        className={styles.mobile}
-        maxWidth="m"
-        paddingY="8"
-        paddingX="16"
-        gap="16"
-        horizontal="between"
-        vertical="center"
-        s={{
-          direction: "column",
-          horizontal: "center",
-          align: "center",
-        }}
+    <div className="mt-auto overflow-hidden">
+      <motion.footer
+        animate={showFooter ? { y: 0, opacity: 1 } : { y: "100%", opacity: 0 }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        className="flex w-full justify-center p-2"
+        style={{ pointerEvents: showFooter ? "auto" : "none" }}
       >
-        <Text variant="body-default-s" onBackground="neutral-strong">
-          <Text onBackground="neutral-weak">© {currentYear} /</Text>
-          <Text paddingX="4">{person.name}</Text>
-          <Text onBackground="neutral-weak">
-            {/* Usage of this template requires attribution. Please don't remove the link to Once UI unless you have a Pro license. */}
-            / Build your portfolio with{" "}
-            <SmartLink href="https://once-ui.com/products/magic-portfolio">Once UI</SmartLink>
-          </Text>
-        </Text>
-        <Row gap="16">
-          {social.map(
-            (item) =>
-              item.link && (
-                <IconButton
-                  key={item.name}
-                  href={item.link}
-                  icon={item.icon}
-                  tooltip={item.name}
-                  size="s"
-                  variant="ghost"
-                />
-              ),
-          )}
-        </Row>
-      </Row>
-      <Row height="80" hide s={{ hide: false }} />
-    </Row>
+        <div className="flex w-full max-w-[960px] items-center justify-between px-4 py-2 sm:flex-row flex-col gap-4 text-center sm:text-left">
+          <p className="text-base text-font-secondary">
+            <span className="text-font-secondary">&copy; {currentYear} /</span>
+            <span className="px-1 text-font-primary">{person.name}</span>
+          </p>
+          <div className="flex gap-1" onMouseLeave={() => setHoveredItem(null)}>
+            {social.map(
+              (item) =>
+                item.link && (
+                  <Link
+                    key={item.name}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.name}
+                    className="relative flex h-9 w-9 items-center justify-center rounded-md"
+                    onMouseEnter={() => setHoveredItem(item.name)}
+                  >
+                    <AnimatePresence>
+                      {hoveredItem === item.name && (
+                        <motion.div
+                          layoutId="footer-hover"
+                          className="absolute inset-0 rounded-md bg-muted-foreground/25"
+                          transition={{ type: "spring", duration: 0.3, bounce: 0.1 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        />
+                      )}
+                    </AnimatePresence>
+                    <Icon name={item.icon} size={16} className="relative z-10" />
+                  </Link>
+                ),
+            )}
+          </div>
+        </div>
+        <div className="h-20 sm:hidden" />
+      </motion.footer>
+    </div>
   );
 };

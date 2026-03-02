@@ -1,9 +1,10 @@
 import { getPosts } from "@/utils/utils";
+import { getWritingPosts } from "@/utils/writing";
 import { baseURL, routes as routesConfig } from "@/resources";
 
 export default async function sitemap() {
-  const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
-    url: `${baseURL}/blog/${post.slug}`,
+  const blogs = getWritingPosts().map((post) => ({
+    url: `${baseURL}/writing/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }));
 

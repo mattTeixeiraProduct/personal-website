@@ -1,16 +1,3 @@
-import {
-  BorderStyle,
-  ChartMode,
-  ChartVariant,
-  NeutralColor,
-  ScalingSize,
-  Schemes,
-  SolidStyle,
-  SolidType,
-  SurfaceStyle,
-  Theme,
-  TransitionStyle,
-} from "@once-ui-system/core";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 
 /**
@@ -28,11 +15,6 @@ export type DisplayConfig = {
 export type RoutesConfig = Record<`/${string}`, boolean>;
 
 /**
- * Protected route configuration.
- */
-export type ProtectedRoutesConfig = Record<`/${string}`, boolean>;
-
-/**
  * Font configuration for each variant.
  */
 export type FontsConfig = {
@@ -40,39 +22,6 @@ export type FontsConfig = {
   body: NextFontWithVariable;
   label: NextFontWithVariable;
   code: NextFontWithVariable;
-};
-
-/**
- * Style customization for main layout.
- */
-export type StyleConfig = {
-  theme: Theme;
-  neutral: NeutralColor;
-  brand: Schemes;
-  accent: Schemes;
-  solid: SolidType;
-  solidStyle: SolidStyle;
-  border: BorderStyle;
-  surface: SurfaceStyle;
-  transition: TransitionStyle;
-  scaling: ScalingSize;
-};
-
-/**
- * Data style configuration for charts.
- */
-export type DataStyleConfig = {
-  variant: ChartVariant;
-  mode: ChartMode;
-  height: number;
-  axis: {
-    stroke: string;
-  };
-  tick: {
-    fill: string;
-    fontSize: number;
-    line: boolean;
-  };
 };
 
 /**
@@ -166,19 +115,16 @@ export type SocialSharingConfig = {
 };
 
 /**
- * Top-level config types for once-ui.config.js
+ * Top-level config types for app config
  */
-export type OnceUIConfig = {
+export type AppConfig = {
   display: DisplayConfig;
   mailchimp: MailchimpConfig;
   routes: RoutesConfig;
-  protectedRoutes: ProtectedRoutesConfig;
   baseURL: string;
   fonts: FontsConfig;
-  style: StyleConfig;
   schema: SchemaConfig;
   sameAs: SameAsConfig;
   socialSharing: SocialSharingConfig;
   effects: EffectsConfig;
-  dataStyle: DataStyleConfig;
 };

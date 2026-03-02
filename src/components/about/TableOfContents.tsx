@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Column, Flex, Text } from "@once-ui-system/core";
-import styles from "./about.module.scss";
+import { createPortal } from "react-dom";
 
 interface TableOfContentsProps {
   structure: {
@@ -19,70 +18,57 @@ interface TableOfContentsProps {
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const scrollTo = (id: string, offset: number) => {
     const element = document.getElementById(id);
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 
-  if (!about.tableOfContent.display) return null;
+  if (!about.tableOfContent.display || !mounted) return null;
 
-  return (
-    <Column
-      left="0"
-      style={{
-        top: "50%",
-        transform: "translateY(-50%)",
-        whiteSpace: "nowrap",
-      }}
-      position="fixed"
-      paddingLeft="24"
-      gap="32"
-      m={{ hide: true }}
+  return createPortal(
+    <div
+      className="fixed left-0 hidden md:flex flex-col gap-8 pl-6 z-40"
+      style={{ top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap" }}
     >
       {structure
         .filter((section) => section.display)
         .map((section, sectionIndex) => (
-          <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
+          <div key={sectionIndex} className="flex flex-col gap-3">
+            <button
               onClick={() => scrollTo(section.title, 80)}
+              className="flex items-center gap-2 cursor-pointer transition-transform hover:translate-x-1"
             >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
-            </Flex>
+              <span className="h-px w-4 bg-foreground" />
+              <span className="text-base">{section.title}</span>
+            </button>
             {about.tableOfContent.subItems && (
               <>
                 {section.items.map((item, itemIndex) => (
-                  <Flex
-                    l={{ hide: true }}
+                  <button
                     key={itemIndex}
-                    style={{ cursor: "pointer" }}
-                    className={styles.hover}
-                    gap="12"
-                    paddingLeft="24"
-                    vertical="center"
                     onClick={() => scrollTo(item, 80)}
+                    className="hidden lg:flex items-center gap-3 pl-6 cursor-pointer transition-transform hover:translate-x-1"
                   >
-                    <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
-                    <Text>{item}</Text>
-                  </Flex>
+                    <span className="h-px w-2 bg-foreground" />
+                    <span className="text-base">{item}</span>
+                  </button>
                 ))}
               </>
             )}
-          </Column>
+          </div>
         ))}
-    </Column>
+    </div>,
+    document.body
   );
 };
 

@@ -1,31 +1,20 @@
 import { notFound } from "next/navigation";
+import { TransitionLink } from "@/components";
 import { getPosts } from "@/utils/utils";
-import {
-  Meta,
-  Schema,
-  AvatarGroup,
-  Button,
-  Column,
-  Flex,
-  Heading,
-  Media,
-  Text,
-  SmartLink,
-  Row,
-  Avatar,
-  Line,
-} from "@once-ui-system/core";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
+import { generateMetadata as genMeta } from "@/lib/metadata";
+import { LightboxImage } from "@/components/mdx/LightboxImage";
+import { Separator } from "@/components/ui/separator";
 import { baseURL, about, person, work } from "@/resources";
-import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
+import { AnimatedSection } from "@/components/about/AnimatedSection";
 import { Metadata } from "next";
 import { Projects } from "@/components/work/Projects";
+import { ArrowLeft } from "lucide-react";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -39,11 +28,11 @@ export async function generateMetadata({
     : routeParams.slug || "";
 
   const posts = getPosts(["src", "app", "work", "projects"]);
-  let post = posts.find((post) => post.slug === slugPath);
+  const post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
 
-  return Meta.generate({
+  return genMeta({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
@@ -62,20 +51,15 @@ export default async function Project({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+  const post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
 
   if (!post) {
     notFound();
   }
 
-  const avatars =
-    post.metadata.team?.map((person) => ({
-      src: person.avatar,
-    })) || [];
-
   return (
-    <Column as="section" maxWidth="m" horizontal="center" gap="l">
-      <Schema
+    <section className="flex w-full flex-col items-center gap-6">
+      <SchemaMarkup
         as="blogPosting"
         baseURL={baseURL}
         path={`${work.path}/${post.slug}`}
@@ -92,46 +76,46 @@ export default async function Project({
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column maxWidth="s" gap="16" horizontal="center" align="center">
-        <SmartLink href="/work">
-          <Text variant="label-strong-m">Projects</Text>
-        </SmartLink>
-        <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-        </Text>
-        <Heading variant="display-strong-m">{post.metadata.title}</Heading>
-      </Column>
-      <Row marginBottom="32" horizontal="center">
-        <Row gap="16" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="s" />}
-          <Text variant="label-default-m" onBackground="brand-weak">
-            {post.metadata.team?.map((member, idx) => (
-              <span key={idx}>
-                {idx > 0 && (
-                  <Text as="span" onBackground="neutral-weak">
-                    ,{" "}
-                  </Text>
-                )}
-                <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
-              </span>
-            ))}
-          </Text>
-        </Row>
-      </Row>
+      <AnimatedSection className="self-start">
+        <TransitionLink
+          href="/work"
+          className="flex items-center gap-1.5 text-sm text-font-secondary hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Projects
+        </TransitionLink>
+      </AnimatedSection>
+      <AnimatedSection delay={0.1} className="flex w-full flex-col items-center gap-5 text-center pt-4 pb-2">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] font-[family-name:var(--font-heading)]">
+          {post.metadata.title}
+        </h1>
+      </AnimatedSection>
       {post.metadata.images.length > 0 && (
-        <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
+        <AnimatedSection delay={0.2} className="w-full">
+          <LightboxImage
+            src={post.metadata.images[0]}
+            alt={post.metadata.title}
+            fill
+            priority
+            sizes="(min-width: 768px) 768px, 100vw"
+            containerClassName="relative w-full overflow-hidden rounded-lg aspect-video"
+            className="object-cover"
+          />
+        </AnimatedSection>
       )}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
-        <CustomMDX source={post.content} />
-      </Column>
-      <Column fillWidth gap="40" horizontal="center" marginTop="40">
-        <Line maxWidth="40" />
-        <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
+      <AnimatedSection delay={0.3} className="mx-auto w-full">
+        <article>
+          <CustomMDX source={post.content} />
+        </article>
+      </AnimatedSection>
+      <AnimatedSection className="flex w-full flex-col items-center gap-10 mt-10">
+        <Separator className="max-w-[10rem]" />
+        <h2 className="text-2xl font-bold tracking-tight mb-6 font-[family-name:var(--font-heading)]">
           Related projects
-        </Heading>
+        </h2>
         <Projects exclude={[post.slug]} range={[2]} />
-      </Column>
+      </AnimatedSection>
       <ScrollToHash />
-    </Column>
+    </section>
   );
 }
