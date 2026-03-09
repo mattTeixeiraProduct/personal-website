@@ -1122,6 +1122,37 @@
   animation: blink-cursor 1s step-end infinite;
 }
 
+/* Toast variant styles */
+.cn-toast {
+  --normal-bg: var(--popover);
+  --normal-text: var(--popover-foreground);
+  --normal-border: var(--border);
+}
+
+.cn-toast-success {
+  --normal-bg: var(--success-background);
+  --normal-text: var(--success-foreground);
+  --normal-border: var(--success);
+}
+
+.cn-toast-info {
+  --normal-bg: var(--info-background);
+  --normal-text: var(--info-foreground);
+  --normal-border: var(--info);
+}
+
+.cn-toast-warning {
+  --normal-bg: var(--warning-background);
+  --normal-text: var(--warning-foreground);
+  --normal-border: var(--warning);
+}
+
+.cn-toast-destructive {
+  --normal-bg: var(--destructive-background);
+  --normal-text: var(--destructive-foreground);
+  --normal-border: var(--destructive);
+}
+
 /* Hero metallic shine effect */
 @keyframes hero-shine {
   0% {

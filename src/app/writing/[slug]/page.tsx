@@ -11,7 +11,7 @@ import { Metadata } from "next";
 import { Posts } from "@/components/writing/Posts";
 import { CopyUrlButton } from "@/components/writing/CopyUrlButton";
 import { SectionList } from "@/components/writing/SectionRenderer";
-import { ArrowLeft, Dot } from "lucide-react";
+import { ChevronLeft, Dot } from "lucide-react";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getWritingPosts();
@@ -83,9 +83,9 @@ export default async function BlogPost({
           />
           <TransitionLink
             href="/writing"
-            className="flex items-center gap-1.5 text-sm text-font-secondary hover:text-foreground transition-colors self-start"
+            className="flex items-center gap-1.5 text-sm text-font-secondary hover:text-foreground transition-colors self-start leading-5"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <ChevronLeft className="size-4" />
             Writing
           </TransitionLink>
           <div className="flex w-full flex-col items-start justify-start gap-5 text-start pt-4 pb-2">
@@ -97,7 +97,7 @@ export default async function BlogPost({
                 {post.metadata.subtitle}
               </p>
             )}
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex items-center justify-between pt-2 w-full">
               <div className="flex items-center justify-start gap-3 pt-2">
                 <span className="text-base text-font-secondary">
                   {person.name}

@@ -39,7 +39,7 @@ export const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.name}
-                    className="relative flex h-9 w-9 items-center justify-center rounded-md"
+                    className="relative flex size-9 items-center justify-center rounded-md text-font-secondary"
                     onMouseEnter={() => setHoveredItem(item.name)}
                   >
                     <AnimatePresence>
@@ -60,7 +60,6 @@ export const Footer = () => {
             )}
           </div>
         </div>
-        <div className="h-20 sm:hidden" />
       </motion.footer>
     </div>
   );

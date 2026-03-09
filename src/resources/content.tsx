@@ -58,7 +58,7 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <strong>Senior Product Designer at pay.com.au</strong> and as the <strong>founder at Deck</strong>.
+      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <strong>Senior Product Designer at pay.com.au</strong> and as the <strong>Founder at Deck</strong>.
     </>
   ),
 };

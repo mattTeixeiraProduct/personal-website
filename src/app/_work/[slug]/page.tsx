@@ -10,7 +10,7 @@ import { ScrollToHash, CustomMDX } from "@/components";
 import { AnimatedSection } from "@/components/about/AnimatedSection";
 import { Metadata } from "next";
 import { Projects } from "@/components/work/Projects";
-import { ArrowLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
@@ -36,7 +36,8 @@ export async function generateMetadata({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
-    image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
+    image:
+      post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
     path: `${work.path}/${post.slug}`,
   });
 }
@@ -51,7 +52,9 @@ export default async function Project({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+  const post = getPosts(["src", "app", "work", "projects"]).find(
+    (post) => post.slug === slugPath,
+  );
 
   if (!post) {
     notFound();
@@ -68,7 +71,8 @@ export default async function Project({
         datePublished={post.metadata.publishedAt}
         dateModified={post.metadata.publishedAt}
         image={
-          post.metadata.image || `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
+          post.metadata.image ||
+          `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
         }
         author={{
           name: person.name,
@@ -79,13 +83,16 @@ export default async function Project({
       <AnimatedSection className="self-start">
         <TransitionLink
           href="/work"
-          className="flex items-center gap-1.5 text-sm text-font-secondary hover:text-foreground transition-colors"
+          className="flex items-center gap-1.5 text-sm text-font-secondary hover:text-foreground transition-colors self-start leading-5"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ChevronLeft className="size-4" />
           Projects
         </TransitionLink>
       </AnimatedSection>
-      <AnimatedSection delay={0.1} className="flex w-full flex-col items-center gap-5 text-center pt-4 pb-2">
+      <AnimatedSection
+        delay={0.1}
+        className="flex w-full flex-col items-center gap-5 text-center pt-4 pb-2"
+      >
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] font-[family-name:var(--font-heading)]">
           {post.metadata.title}
         </h1>

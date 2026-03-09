@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { ShinyText } from "@/components/ShinyText";
 
 interface HeroAnimationProps {
   children: React.ReactNode;
@@ -184,23 +185,24 @@ export function HeroHeadline({ children, className }: HeroAnimationProps) {
   );
 
   return (
-    <h1
-      className={`${className ?? ""}${isComplete ? " hero-shine" : ""}`}
-      style={
-        isComplete
-          ? ({
-              "--shine-base": "var(--foreground)",
-              "--shine-delay": skip ? "0s" : "7s",
-            } as React.CSSProperties)
-          : undefined
-      }
-    >
-      {displayedText}
-      {isTyping && <span className="typing-cursor" />}
-      {!isComplete && (
-        <span className="invisible select-none" aria-hidden="true">
-          {text.slice(displayedText.length)}
-        </span>
+    <h1 className={className}>
+      {isComplete ? (
+        <ShinyText
+          speed={3}
+          delay={2}
+          color="var(--color-foreground)"
+          shineColor="var(--color-main-light)"
+        >
+          {displayedText}
+        </ShinyText>
+      ) : (
+        <>
+          {displayedText}
+          {isTyping && <span className="typing-cursor" />}
+          <span className="invisible select-none" aria-hidden="true">
+            {text.slice(displayedText.length)}
+          </span>
+        </>
       )}
     </h1>
   );
@@ -223,23 +225,24 @@ export function HeroSubline({ children, className }: HeroAnimationProps) {
   const { nodes: richDisplayed } = sliceChildren(children, displayedCount);
 
   return (
-    <p
-      className={`${className ?? ""}${isComplete ? " hero-shine" : ""}`}
-      style={
-        isComplete
-          ? ({
-              "--shine-base": "var(--font-secondary)",
-              "--shine-delay": skip ? "0s" : "3s",
-            } as React.CSSProperties)
-          : undefined
-      }
-    >
-      {richDisplayed}
-      {isTyping && <span className="typing-cursor" />}
-      {!isComplete && (
-        <span className="invisible select-none" aria-hidden="true">
-          {text.slice(displayedText.length)}
-        </span>
+    <p className={className}>
+      {isComplete ? (
+        <ShinyText
+          speed={3}
+          delay={3}
+          color="var(--color-font-secondary)"
+          shineColor="var(--color-main-light)"
+        >
+          {richDisplayed}
+        </ShinyText>
+      ) : (
+        <>
+          {richDisplayed}
+          {isTyping && <span className="typing-cursor" />}
+          <span className="invisible select-none" aria-hidden="true">
+            {text.slice(displayedText.length)}
+          </span>
+        </>
       )}
     </p>
   );

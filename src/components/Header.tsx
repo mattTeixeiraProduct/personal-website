@@ -78,7 +78,7 @@ function NavItem({ href, label, selected, hovered, onHover }: NavItemProps) {
           />
         )}
       </AnimatePresence>
-      {label && <span className="relative z-10 hidden sm:inline">{label}</span>}
+      {label && <span className="relative z-10">{label}</span>}
     </TransitionLink>
   );
 }
@@ -91,7 +91,7 @@ export const Header = () => {
     <>
       <header
         className={cn(
-          "sticky top-0 sm:sticky sm:top-0 fixed bottom-0 sm:bottom-auto z-[9] flex w-full items-center justify-center p-2 relative",
+          "sticky top-0 sm:sticky sm:top-0 fixed bottom-0 sm:bottom-auto z-[9] flex w-full items-center justify-center p-5 md:p-2 relative",
         )}
       >
         <div
@@ -102,7 +102,7 @@ export const Header = () => {
             WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent)",
           }}
         />
-        <div className="opacity-0 sm:flex flex-1 items-center pl-3 text-sm">
+        <div className="opacity-0 hidden sm:flex flex-1 items-center pl-3 text-sm">
           {display.location && <span>{person.location}</span>}
         </div>
 
@@ -130,7 +130,7 @@ export const Header = () => {
                 onHover={() => setHoveredItem("/about")}
               />
             )}
-            {routes["/work"] && (
+            {/* {routes["/work"] && (
               <NavItem
                 href="/work"
                 label={work.label}
@@ -138,7 +138,7 @@ export const Header = () => {
                 hovered={hoveredItem === "/work"}
                 onHover={() => setHoveredItem("/work")}
               />
-            )}
+            )} */}
             {routes["/writing"] && (
               <NavItem
                 href="/writing"
