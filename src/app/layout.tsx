@@ -33,7 +33,7 @@ export default async function RootLayout({
         fonts.code.variable,
       )}
     >
-      <body className="flex min-h-screen flex-col font-[family-name:var(--font-body)] text-foreground antialiased">
+      <body className="flex min-h-screen flex-col font-[family-name:var(--font-body)] text-foreground antialiased bg-background">
         <Providers>
           <BackgroundEffects />
           <div className="hidden sm:block h-4" />

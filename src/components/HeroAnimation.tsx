@@ -65,12 +65,19 @@ function sliceChildren(
       const slice = str.slice(0, remaining);
       nodes.push(slice);
       remaining -= slice.length;
-    } else if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.props.children != null) {
-      const result = sliceChildren(child.props.children, remaining);
-      if (result.nodes.length > 0) {
-        nodes.push(React.cloneElement(child, { key: child.key }, ...result.nodes));
+    } else if (React.isValidElement<{ children?: React.ReactNode }>(child)) {
+      // Handle elements with children (e.g. <strong>, <a>)
+      if (child.props.children != null) {
+        const result = sliceChildren(child.props.children, remaining);
+        if (result.nodes.length > 0) {
+          nodes.push(React.cloneElement(child, { key: child.key }, ...result.nodes));
+        }
+        remaining = result.remaining;
+      } else {
+        // Handle self-closing elements (e.g. icons, <br />, <img />)
+        // Include them as-is without consuming characters
+        nodes.push(child);
       }
-      remaining = result.remaining;
     }
   });
 

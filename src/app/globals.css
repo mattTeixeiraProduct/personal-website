@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@source "../../../apps/**/*.{ts,tsx}";
-@source "../../../components/**/*.{ts,tsx}";
-@source "../**/*.{ts,tsx}";
 
 @import "tw-animate-css";
 
@@ -173,7 +170,7 @@
   --radius-50: 50px;
 
   /* Semantic Colors (Light Mode) */
-  --background: var(--color-gray-50);
+  --background: var(--color-gray-100);
   --sidebar-background: var(--color-gray-75);
   --strong-background: var(--color-gray-50);
   --foreground: var(--color-gray-900);

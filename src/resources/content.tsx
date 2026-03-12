@@ -1,4 +1,5 @@
 import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import { ArrowUpRight } from "lucide-react";
 
 const person: Person = {
   firstName: "Teixeira",
@@ -58,7 +59,7 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <strong>Senior Product Designer at pay.com.au</strong> and as the <strong>Founder at Deck</strong>.
+      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <a href="https://pay.com.au" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Senior Product Designer at pay.com.au<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a> and as the <a href="https://getdeck.io" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Founder at Deck<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>.
     </>
   ),
 };
