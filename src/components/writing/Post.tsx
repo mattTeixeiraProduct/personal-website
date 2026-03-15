@@ -64,18 +64,18 @@ export default function Post({
             />
           </div>
         )}
-        <div className="flex w-full">
-          <div className="flex max-w-md flex-col gap-5 px-4 pt-2 pb-6">
+        <div className="flex items-start flex-row w-full justify-between px-4 pt-2 pb-6">
+          <div className="flex max-w-md flex-col gap-5 w-full">
             <h3 className="text-xl font-semibold leading-tight text-balance font-[family-name:var(--font-heading)]">
               {post.metadata.title}
             </h3>
             <span className="text-base text-font-secondary">
               {formatDate(post.metadata.publishedAt, false)}
             </span>
-            {post.metadata.tag && (
-              <Badge variant="secondary">{post.metadata.tag}</Badge>
-            )}
           </div>
+          {post.metadata.tag && (
+            <Badge variant="secondary">{post.metadata.tag}</Badge>
+          )}
         </div>
       </div>
     </TransitionLink>

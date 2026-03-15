@@ -34,7 +34,7 @@ export default function Blog() {
         {blog.title}
       </h1>
       <div className="flex w-full flex-1 flex-col gap-10">
-        <Posts range={[1, 10]} thumbnail />
+        <Posts range={[1, 10]} />
       </div>
     </div>
   );
