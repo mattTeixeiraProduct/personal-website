@@ -65,7 +65,7 @@ const post: WritingPost = {
     },
     {
       type: "paragraph",
-      text: "Luckily, many other companies have taken care of this. Famous was Amazon, which was the first one to coin the term MLP (minimum lovable product). More recently I've heard Elena Verna from Lovable saying they also approach product by thinking about minimum lovable product rather than viable.",
+      text: "Luckily, many other companies have taken care of this. Famous was Amazon, which was the first one to coin the term MLP (minimum lovable product). More recently I've heard [Elena Verna from Lovable](https://www.youtube.com/watch?v=6qAB6aUMIeA) saying they also approach product by thinking about minimum lovable product rather than viable.",
     },
     {
       type: "paragraph",
