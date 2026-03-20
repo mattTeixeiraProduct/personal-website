@@ -1,4 +1,3 @@
-import { Mailchimp } from "@/components";
 import { Posts } from "@/components/writing/Posts";
 import { SchemaMarkup } from "@/components/SchemaMarkup";
 import { generateMetadata as genMeta } from "@/lib/metadata";
@@ -30,11 +29,11 @@ export default function Blog() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <h1 className="mb-6 text-3xl text-left font-bold tracking-tight font-[family-name:var(--font-heading)]">
+      <h1 className="px-3 mb-6 text-xl text-left text-font-secondary tracking-tight font-[family-name:var(--font-heading)]">
         {blog.title}
       </h1>
       <div className="flex w-full flex-1 flex-col gap-10">
-        <Posts range={[1, 10]} />
+        <Posts range={[1, 10]} thumbnail />
       </div>
     </div>
   );

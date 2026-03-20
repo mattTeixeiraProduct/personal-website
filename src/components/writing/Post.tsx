@@ -52,7 +52,7 @@ export default function Post({
             : "flex-col sm:flex-row sm:gap-6 group-hover:text-font-secondary",
         )}
       >
-        {post.metadata.image && thumbnail && (
+        {/* {post.metadata.image && thumbnail && (
           <div className="relative w-full overflow-hidden rounded-lg border aspect-video">
             <Image
               src={post.metadata.image}
@@ -63,19 +63,17 @@ export default function Post({
               priority
             />
           </div>
-        )}
-        <div className="flex items-start flex-row w-full justify-between px-4 pt-2 pb-6">
-          <div className="flex max-w-md flex-col gap-5 w-full">
-            <h3 className="text-xl font-semibold leading-tight text-balance font-[family-name:var(--font-heading)]">
+        )} */}
+        <div className="flex items-start flex-col w-full justify-between px-3 py-3">
+            <h3 className="text-lg md:text-xl font-semibold leading-tight font-[family-name:var(--font-heading)]">
               {post.metadata.title}
             </h3>
-            <span className="text-base text-font-secondary">
+            <span className="text-base text-font-secondary whitespace-nowrap">
               {formatDate(post.metadata.publishedAt, false)}
             </span>
-          </div>
-          {post.metadata.tag && (
+          {/* {post.metadata.tag && (
             <Badge variant="secondary">{post.metadata.tag}</Badge>
-          )}
+          )} */}
         </div>
       </div>
     </TransitionLink>
