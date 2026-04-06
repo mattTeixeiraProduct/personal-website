@@ -27,7 +27,7 @@ export function LightboxImage({
   fill,
   priority,
   className = "w-full h-auto",
-  containerClassName = "relative mt-2 mb-4 w-full overflow-hidden rounded-lg border",
+  containerClassName = "relative mt-2 mb-4 w-full overflow-hidden rounded-lg",
 }: LightboxImageProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);

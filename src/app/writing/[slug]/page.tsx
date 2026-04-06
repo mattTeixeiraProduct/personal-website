@@ -112,14 +112,14 @@ export default async function BlogPost({
             </div>
           </div>
           {post.metadata.image && (
-            <div className="relative w-full overflow-hidden rounded-lg border mt-3 mb-2 aspect-video">
+            <div className="relative w-full overflow-hidden rounded-lg mt-3 mb-2 aspect-video">
               <LightboxImage
                 src={post.metadata.image}
                 alt={post.metadata.title}
               />
             </div>
           )}
-          <article className="w-full">
+          <article className="w-full text-lg">
             <SectionList sections={post.sections} />
           </article>
 

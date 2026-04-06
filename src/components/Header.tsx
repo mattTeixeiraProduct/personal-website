@@ -69,7 +69,7 @@ function NavItem({ href, label, selected, hovered, onHover }: NavItemProps) {
             layoutId="nav-hover"
             className={cn(
               "absolute inset-0 rounded-md",
-              selected ? "bg-accent/25" : "bg-accent/25",
+              selected ? "bg-card-hover" : "bg-card-hover",
             )}
             transition={{ type: "tween", duration: 0.3, bounce: 0.1 }}
             initial={{ opacity: 0 }}
