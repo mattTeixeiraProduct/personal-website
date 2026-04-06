@@ -43,8 +43,8 @@ const home: Home = {
   path: "/",
   image: "/images/og/home.jpeg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
+  title: `${person.name} | Personal Website`,
+  description: `Thoughts, Takes & Contributions by ${person.name}`,
   headline: <>Designer by day, entrepreneur at all other times</>,
   featured: {
     display: true,
