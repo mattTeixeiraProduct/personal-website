@@ -115,7 +115,13 @@ export default async function BlogPost({
             <div className="relative w-full overflow-hidden rounded-lg mt-3 mb-2 aspect-video">
               <LightboxImage
                 src={post.metadata.image}
+                srcLight={post.metadata.imageLight}
                 alt={post.metadata.title}
+                fill
+                priority
+                sizes="(max-width: 960px) 100vw, 960px"
+                className="object-cover"
+                containerClassName="absolute inset-0 block size-full"
               />
             </div>
           )}

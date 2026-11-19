@@ -7,11 +7,12 @@ import { LightboxImage } from "./LightboxImage";
 
 interface FigureProps {
   src: string;
+  srcLight?: string;
   alt: string;
   caption?: string;
 }
 
-export function Figure({ src, alt, caption }: FigureProps) {
+export function Figure({ src, srcLight, alt, caption }: FigureProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, inViewOptions);
 
@@ -26,6 +27,7 @@ export function Figure({ src, alt, caption }: FigureProps) {
     >
       <LightboxImage
         src={src}
+        srcLight={srcLight}
         alt={alt}
         containerClassName="relative w-full overflow-hidden rounded-lg border"
         className="h-auto w-full"

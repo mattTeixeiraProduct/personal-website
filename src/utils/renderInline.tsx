@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 /**
  * Parse inline markdown (bold, italic, code, links) into React nodes.
@@ -23,31 +22,21 @@ export function renderInline(text: string): React.ReactNode {
 
     if (match[1] !== undefined && match[2] !== undefined) {
       // Link: [text](url)
+      // Every link opens in a new tab, except same-page #anchors.
       const href = match[2];
-      const isExternal = href.startsWith("http");
-      if (isExternal) {
-        parts.push(
-          <a
-            key={key++}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80"
-          >
-            {match[1]}
-          </a>,
-        );
-      } else {
-        parts.push(
-          <Link
-            key={key++}
-            href={href}
-            className="text-primary underline underline-offset-4 hover:text-primary/80"
-          >
-            {match[1]}
-          </Link>,
-        );
-      }
+      const isAnchor = href.startsWith("#");
+      parts.push(
+        <a
+          key={key++}
+          href={href}
+          {...(isAnchor
+            ? {}
+            : { target: "_blank", rel: "noopener noreferrer" })}
+          className="text-primary underline underline-offset-4 hover:text-primary/80"
+        >
+          {match[1]}
+        </a>,
+      );
     } else if (match[3] !== undefined) {
       // Bold: **text**
       parts.push(<strong key={key++}>{match[3]}</strong>);

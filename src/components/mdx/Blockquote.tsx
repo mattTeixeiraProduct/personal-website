@@ -6,9 +6,10 @@ import { fadeInUp, scrollTransition, inViewOptions } from "./animation";
 
 interface BlockquoteProps {
   children: React.ReactNode;
+  size?: "default" | "large";
 }
 
-export function Blockquote({ children }: BlockquoteProps) {
+export function Blockquote({ children, size = "default" }: BlockquoteProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, inViewOptions);
 
@@ -40,7 +41,11 @@ export function Blockquote({ children }: BlockquoteProps) {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       transition={scrollTransition()}
-      className="my-6 border-l-2 border-primary/40 pl-4 italic text-font-secondary"
+      className={
+        size === "large"
+          ? "my-8 border-l-2 border-primary/40 pl-5 text-[30px] leading-[1.25] text-balance italic text-font-secondary"
+          : "my-6 border-l-2 border-primary/40 pl-4 italic text-font-secondary"
+      }
     >
       {body}
       {attribution && (

@@ -20,6 +20,8 @@ type ImageSection = {
 type FigureSection = {
   type: "figure";
   src: string;
+  /** Optional light-mode version of `src`. */
+  srcLight?: string;
   alt: string;
   caption?: string;
 };
@@ -35,6 +37,7 @@ type BlockquoteSection = {
   type: "blockquote";
   text: string;
   attribution?: string;
+  size?: "default" | "large";
 };
 
 type CalloutSection = {
@@ -104,6 +107,13 @@ type SeparatorSection = {
   type: "separator";
 };
 
+/** A copyable LLM prompt. `[placeholders]` render as fill-in text. */
+type PromptSection = {
+  type: "prompt";
+  text: string;
+  title?: string;
+};
+
 export type Section =
   | ParagraphSection
   | HeadingSection
@@ -121,7 +131,8 @@ export type Section =
   | TabsSection
   | BeforeAfterSection
   | VideoSection
-  | SeparatorSection;
+  | SeparatorSection
+  | PromptSection;
 
 // ---- Post metadata & full post shape ----
 
@@ -132,6 +143,8 @@ export type WritingPostMetadata = {
   publishedAt: string; // "YYYY-MM-DD"
   tag?: string;
   image?: string;
+  /** Optional light-mode version of `image`. */
+  imageLight?: string;
 };
 
 export type WritingPost = {

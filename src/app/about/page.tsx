@@ -58,7 +58,6 @@ export default function About() {
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight font-[family-name:var(--font-heading)]">
           {person.name}
         </h1>
-        <p className="text-lg text-font-secondary mt-1">{person.role}</p>
 
         <div className="flex items-center gap-4 mt-3 text-base text-font-secondary">
           <span className="flex items-center gap-1.5">

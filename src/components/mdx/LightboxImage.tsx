@@ -8,6 +8,8 @@ import { X } from "lucide-react";
 
 interface LightboxImageProps {
   src: string;
+  /** Optional version shown in light mode; `src` is then the dark-mode image. */
+  srcLight?: string;
   alt: string;
   width?: number;
   height?: number;
@@ -20,6 +22,7 @@ interface LightboxImageProps {
 
 export function LightboxImage({
   src,
+  srcLight,
   alt,
   width = 960,
   height = 540,
@@ -31,6 +34,14 @@ export function LightboxImage({
 }: LightboxImageProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // With a light variant, CSS picks the image for the current theme.
+  const variants = srcLight
+    ? [
+        { src: srcLight, cls: "dark:hidden" },
+        { src, cls: "hidden dark:block" },
+      ]
+    : [{ src, cls: "" }];
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -62,25 +73,29 @@ export function LightboxImage({
         onClick={() => setOpen(true)}
         className={`${containerClassName} cursor-zoom-in`}
       >
-        {fill ? (
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            priority={priority}
-            sizes={sizes}
-            className={className}
-          />
-        ) : (
-          <Image
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-            priority={priority}
-            sizes={sizes}
-            className={className}
-          />
+        {variants.map(({ src: variantSrc, cls }) =>
+          fill ? (
+            <Image
+              key={variantSrc}
+              src={variantSrc}
+              alt={alt}
+              fill
+              priority={priority}
+              sizes={sizes}
+              className={`${className} ${cls}`}
+            />
+          ) : (
+            <Image
+              key={variantSrc}
+              src={variantSrc}
+              alt={alt}
+              width={width}
+              height={height}
+              priority={priority}
+              sizes={sizes}
+              className={`${className} ${cls}`}
+            />
+          ),
         )}
       </button>
 
@@ -112,14 +127,17 @@ export function LightboxImage({
                   transition={{ duration: 0.2 }}
                   className="relative h-[90vh] w-[90vw] pointer-events-none"
                 >
-                  <Image
-                    src={src}
-                    alt={alt}
-                    fill
-                    sizes="90vw"
-                    className="rounded-lg object-contain pointer-events-auto"
-                    onClick={(e) => e.stopPropagation()}
-                  />
+                  {variants.map(({ src: variantSrc, cls }) => (
+                    <Image
+                      key={variantSrc}
+                      src={variantSrc}
+                      alt={alt}
+                      fill
+                      sizes="90vw"
+                      className={`rounded-lg object-contain pointer-events-auto ${cls}`}
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  ))}
                 </motion.div>
               </motion.div>
             )}

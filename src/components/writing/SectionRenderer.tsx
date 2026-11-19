@@ -18,6 +18,7 @@ import { Embed } from "@/components/mdx/Embed";
 import { Tabs, Tab } from "@/components/mdx/Tabs";
 import { BeforeAfter } from "@/components/mdx/BeforeAfter";
 import { Video } from "@/components/mdx/Video";
+import { Prompt } from "@/components/mdx/Prompt";
 
 function makeSlug(str: string): string {
   const strWithAnd = str.replace(/&/g, " and ");
@@ -65,6 +66,7 @@ function SectionRenderer({ section }: { section: Section }) {
       return (
         <Figure
           src={section.src}
+          srcLight={section.srcLight}
           alt={section.alt}
           caption={section.caption}
         />
@@ -87,7 +89,7 @@ function SectionRenderer({ section }: { section: Section }) {
 
     case "blockquote":
       return (
-        <Blockquote>
+        <Blockquote size={section.size}>
           <p>{renderInline(section.text)}</p>
           {section.attribution && (
             <p>{"\u2014 " + section.attribution}</p>
@@ -178,6 +180,9 @@ function SectionRenderer({ section }: { section: Section }) {
           muted={section.muted}
         />
       );
+
+    case "prompt":
+      return <Prompt text={section.text} title={section.title} />;
 
     case "separator":
       return (

@@ -10,3 +10,4 @@ export { Embed } from "./Embed";
 export { Tabs, Tab } from "./Tabs";
 export { BeforeAfter } from "./BeforeAfter";
 export { Video } from "./Video";
+export { Prompt } from "./Prompt";
