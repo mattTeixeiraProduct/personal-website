@@ -1,21 +1,15 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import { About, Blog, Home, Person, Social, Work } from "@/types";
 import { ArrowUpRight } from "lucide-react";
 
 const person: Person = {
-  firstName: "Teixeira",
-  lastName: "Matt",
+  firstName: "Matt",
+  lastName: "Teixeira",
   name: `Matt Teixeira`,
-  role: "Design Engineer",
+  role: "Product Designer & Founder",
   avatar: "/images/avatar.jpeg",
   email: "matt.teixeira@mattteixeira.com",
   location: "Australia/Melbourne",
   languages: ["English", "Portuguese", "Spanish"],
-};
-
-const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
 };
 
 const social: Social = [
@@ -55,11 +49,11 @@ const home: Home = {
         <strong className="">Deck</strong>
       </span>
     ),
-    href: "/work/capitalclimb",
+    href: "https://getdeck.io",
   },
   subline: (
     <>
-      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <a href="https://pay.com.au" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Senior Product Designer at pay.com.au<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a> and as the <a href="https://getdeck.io" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Founder at Deck<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>.
+      I'm Matt, a designer and software builder who believes passion, craft, and taste are competitive advantages. I currently work as a <a href="https://pay.com.au" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Senior Product Designer at pay.com.au<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a> and as the <a href="https://getdeck.io" target="_blank" rel="noopener noreferrer" className="font-semibold transition-all duration-200 hover:text-primary group">Founder at Deck<ArrowUpRight size={14} className="inline-block align-middle ml-0.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>, which turns scattered customer feedback into a clear, user-centric product roadmap.
     </>
   ),
 };
@@ -75,10 +69,6 @@ const about: About = {
   },
   avatar: {
     display: true,
-  },
-  calendar: {
-    display: false,
-    link: "https://cal.com",
   },
   intro: {
     display: true,
@@ -208,66 +198,6 @@ const about: About = {
       },
     ],
   },
-  technical: {
-    display: false,
-    title: "Technical skills",
-    skills: [
-      {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
-        ],
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-    ],
-  },
 };
 
 const blog: Blog = {
@@ -284,21 +214,4 @@ const work: Work = {
   description: `Design and dev projects by ${person.name}`,
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  images: [
-    { src: "/images/gallery/horizontal-1.jpg", alt: "image", orientation: "horizontal" },
-    { src: "/images/gallery/vertical-4.jpg", alt: "image", orientation: "vertical" },
-    { src: "/images/gallery/horizontal-3.jpg", alt: "image", orientation: "horizontal" },
-    { src: "/images/gallery/vertical-1.jpg", alt: "image", orientation: "vertical" },
-    { src: "/images/gallery/vertical-2.jpg", alt: "image", orientation: "vertical" },
-    { src: "/images/gallery/horizontal-2.jpg", alt: "image", orientation: "horizontal" },
-    { src: "/images/gallery/horizontal-4.jpg", alt: "image", orientation: "horizontal" },
-    { src: "/images/gallery/vertical-3.jpg", alt: "image", orientation: "vertical" },
-  ],
-};
-
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, home, about, blog, work };

@@ -3,12 +3,11 @@ import Link from "next/link";
 import { baseURL, about, person, social } from "@/resources";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import { SchemaMarkup } from "@/components/SchemaMarkup";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/Icon";
 import { WorkExperience } from "@/components/about/WorkExperience";
 import { AnimatedSection } from "@/components/about/AnimatedSection";
-import { Calendar, ChevronRight, Globe, GraduationCap } from "lucide-react";
+import { Globe, GraduationCap } from "lucide-react";
 import React from "react";
 
 export async function generateMetadata() {
@@ -92,23 +91,6 @@ export default function About() {
               ))}
           </div>
         )}
-
-        {about.calendar.display && (
-          <div className="flex items-center gap-2 rounded-full border bg-card/60 p-1 pr-1 mt-4 backdrop-blur-sm">
-            <Calendar className="h-4 w-4 ml-3 text-font-secondary" />
-            <span className="px-2 text-sm">Schedule a call</span>
-            <Button
-              size="icon"
-              variant="secondary"
-              className="h-7 w-7 rounded-full"
-              asChild
-            >
-              <Link href={about.calendar.link}>
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        )}
       </AnimatedSection>
 
       {/* ── Divider ── */}
@@ -185,82 +167,6 @@ export default function About() {
             ))}
           </div>
         </AnimatedSection>
-      )}
-
-      {/* ── Technical Skills ── */}
-      {about.technical.display && (
-        <>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
-          <AnimatedSection delay={0.05} className="py-12">
-            <div className="flex items-center gap-3 mb-8">
-              <h2
-                id={about.technical.title}
-                className="text-xs font-medium tracking-[0.2em] uppercase text-font-secondary"
-              >
-                {about.technical.title}
-              </h2>
-              <div className="flex-1 h-px bg-border/50" />
-            </div>
-            <div className="flex flex-col gap-6">
-              {about.technical.skills.map((skill, index) => (
-                <AnimatedSection
-                  key={`${skill.title}-${index}`}
-                  delay={index * 0.08}
-                >
-                  <div className="group rounded-xl border border-border/50 bg-card/30 p-5 transition-all duration-300 hover:border-border hover:bg-card/60 hover:shadow-sm">
-                    <h3
-                      id={skill.title}
-                      className="text-base font-semibold tracking-tight"
-                    >
-                      {skill.title}
-                    </h3>
-                    <p className="text-sm text-font-secondary mt-1">
-                      {skill.description}
-                    </p>
-                    {skill.tags && skill.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-3">
-                        {skill.tags.map((tag, tagIndex) => (
-                          <Badge
-                            key={`${skill.title}-${tagIndex}`}
-                            variant="secondary"
-                            className="gap-1.5"
-                          >
-                            {tag.icon && (
-                              <Icon name={tag.icon as any} size={12} />
-                            )}
-                            {tag.name}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                    {skill.images && skill.images.length > 0 && (
-                      <div className="flex flex-wrap gap-3 pt-4">
-                        {skill.images.map((image, idx) => (
-                          <div
-                            key={idx}
-                            className="relative overflow-hidden rounded-lg border"
-                            style={{
-                              width: image.width * 10,
-                              height: image.height * 10,
-                            }}
-                          >
-                            <Image
-                              src={image.src}
-                              alt={image.alt}
-                              fill
-                              sizes={`${image.width * 10}px`}
-                              className="object-cover"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </AnimatedSection>
-        </>
       )}
 
       {/* Bottom spacer */}

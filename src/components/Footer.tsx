@@ -26,7 +26,7 @@ export const Footer = () => {
       >
         <div className="flex w-full max-w-[960px] items-center justify-between px-4 py-2 sm:flex-row flex-col gap-4 text-center sm:text-left">
           <p className="text-base text-font-secondary">
-            <span className="text-font-secondary">&copy; {currentYear} /</span>
+            <span className="text-font-secondary">&copy; {currentYear}</span>
             <span className="px-1 text-font-primary">{person.name}</span>
           </p>
           <div className="flex gap-1" onMouseLeave={() => setHoveredItem(null)}>

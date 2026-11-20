@@ -113,7 +113,7 @@ const post: WritingPost = {
     },
     {
       type: "paragraph",
-      text: "Deck, which we started and are still very much focused on, is about optimizing a company's scattered feedback. But the business outcome of improving a product goes beyond processing feedback. You have to make it actionable, build it, release it, track whether it worked. If we're moving fast, there's no reason to stop at just doing a good job processing user feedback. We have to go beyond that.",
+      text: "[Deck](https://getdeck.io), which we started and are still very much focused on, is about optimizing a company's scattered feedback. But the business outcome of improving a product goes beyond processing feedback. You have to make it actionable, build it, release it, track whether it worked. If we're moving fast, there's no reason to stop at just doing a good job processing user feedback. We have to go beyond that.",
     },
     {
       type: "paragraph",

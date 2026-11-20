@@ -15,7 +15,7 @@ const post: WritingPost = {
     },
     {
       type: "paragraph",
-      text: "A few weeks ago, I was designing a way for Deck to consolidate and analyze all of a company's NPS scores.",
+      text: "A few weeks ago, I was designing a way for [Deck](https://getdeck.io) to consolidate and analyze all of a company's NPS scores.",
     },
     {
       type: "paragraph",
@@ -27,7 +27,7 @@ const post: WritingPost = {
     },
     {
       type: "paragraph",
-      text: "For the frontend, I convinced myself: \"The real value comes from Deck identifying, synthesizing, and organizing the NPS data. Users just need to land on the page and read everything to grasp what their customers like and don't like.\"",
+      text: "For the frontend, I convinced myself: \"The real value comes from [Deck](https://getdeck.io) identifying, synthesizing, and organizing the NPS data. Users just need to land on the page and read everything to grasp what their customers like and don't like.\"",
     },
     {
       type: "paragraph",

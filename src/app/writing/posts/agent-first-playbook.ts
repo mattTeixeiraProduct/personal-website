@@ -81,7 +81,7 @@ Start with "How to Know Where Your Product Stands". Wait for my answers before m
     },
     {
       type: "paragraph",
-      text: "It shows in what I've built. Deck has **92% monthly retention**, and usage keeps climbing. Retention is the metric I worry about most.",
+      text: "It shows in what I've built. [Deck](https://getdeck.io) has **92% monthly retention**, and usage keeps climbing. Retention is the metric I worry about most.",
     },
     {
       type: "paragraph",
@@ -532,7 +532,7 @@ Be skeptical. Question every job that isn't the main job.`,
     },
     {
       type: "paragraph",
-      text: "**Deck example.** When I started thinking about Deck in June 2025, the value was simple: put all your feedback sources in one place, and use AI to organize it so product and design teams could solve their customers' pain points.",
+      text: "**[Deck](https://getdeck.io) example.** When I started thinking about Deck in June 2025, the value was simple: put all your feedback sources in one place, and use AI to organize it so product and design teams could solve their customers' pain points.",
     },
     {
       type: "paragraph",
@@ -845,7 +845,7 @@ My API endpoints or MCP tools today: [paste the list]
     },
     {
       type: "paragraph",
-      text: "If you're a founder or work in a product team and you're looking for a way to build what your customers want, give Deck a try. [This link](https://getdeck.io/sign-up?offer=trial) gets you a 14-day free trial (subject to availability) 🚀",
+      text: "If you're a founder or work in a product team and you're looking for a way to build what your customers want, give [Deck](https://getdeck.io) a try. [This link](https://getdeck.io/sign-up?offer=trial) gets you a 14-day free trial (subject to availability) 🚀",
     },
   ],
 };

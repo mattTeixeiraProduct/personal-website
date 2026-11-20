@@ -5,7 +5,6 @@ import {
   HiOutlineLink,
   HiArrowTopRightOnSquare,
   HiEnvelope,
-  HiCalendarDays,
   HiArrowRight,
   HiOutlineEye,
   HiOutlineEyeSlash,
@@ -19,7 +18,6 @@ import {
   PiUserCircleDuotone,
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
-  PiImageDuotone,
 } from "react-icons/pi";
 
 import {
@@ -40,9 +38,7 @@ export const iconLibrary: Record<string, IconType> = {
   grid: PiGridFourDuotone,
   book: PiBookBookmarkDuotone,
   openLink: HiOutlineLink,
-  calendar: HiCalendarDays,
   home: PiHouseDuotone,
-  gallery: PiImageDuotone,
   discord: FaDiscord,
   eye: HiOutlineEye,
   eyeOff: HiOutlineEyeSlash,

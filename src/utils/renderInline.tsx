@@ -34,12 +34,12 @@ export function renderInline(text: string): React.ReactNode {
             : { target: "_blank", rel: "noopener noreferrer" })}
           className="text-primary underline underline-offset-4 hover:text-primary/80"
         >
-          {match[1]}
+          {renderInline(match[1])}
         </a>,
       );
     } else if (match[3] !== undefined) {
-      // Bold: **text**
-      parts.push(<strong key={key++}>{match[3]}</strong>);
+      // Bold: **text** (recursive, so links can sit inside bold)
+      parts.push(<strong key={key++}>{renderInline(match[3])}</strong>);
     } else if (match[4] !== undefined) {
       // Inline code: `text`
       parts.push(

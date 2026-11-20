@@ -1,9 +1,8 @@
 {
-  "name": "@once-ui-system/magic-portfolio",
-  "version": "2.3.0",
+  "name": "mattteixeira-com",
+  "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
-    "export": "next export",
     "build": "next build",
     "biome-write": "npx @biomejs/biome format --write .",
     "start": "next start",
